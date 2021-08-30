@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">Registration</div>
+        <div class="content">
+            <form id="reg-form">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Full Name</span>
+                        <input type="text" placeholder="Enter your name" id="fullname" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Username</span>
+                        <input type="text" placeholder="Enter your username" id="username" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Email</span>
+                        <input type="text" placeholder="Enter your email" id="email" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Password</span>
+                        <input type="password" placeholder="Enter your password" id="password" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Phone Number</span>
+                        <input type="text" placeholder="Enter your number" id="phone">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Adrress</span>
+                        <input type="text" placeholder="Enter your address" id="address">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">State</span>
+                        <input type="text" placeholder="Enter your state" id="state">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">City</span>
+                        <input type="text" placeholder="Enter your city" id="city">
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Register">
+                </div>
+                <p> <a style="display: flex;
+                    align-items: center;
+                    justify-content: center" href="/login">login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const form = document.querySelector('form')
+        form.addEventListener('submit', registerUser)
+
+        async function registerUser(event) {
+            event.preventDefault()
+            const userModel = {
+                fullname: document.getElementById('fullname').value,
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                state: document.getElementById('state').value,
+                city: document.getElementById('city').value,
+            }
+            const result = await fetch('/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userModel)
+            }).then((res) => res.json())
+
+            if (result.status === 200) {
+                form.reset();
+                alert(JSON.stringify(result.message));
+            } else {
+                console.log(JSON.stringify(result))
+                alert(JSON.stringify(result.message));
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+        
+        .container {
+            width: 80%;
+            background-color: #fff;
+            padding: 25px 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .container .title {
+            font-size: 25px;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .container .title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 30px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+        
+        .content form .user-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0 12px 0;
+        }
+        
+        form .user-details .input-box {
+            margin-bottom: 15px;
+            width: calc(100% / 2 - 20px);
+        }
+        
+        .button {
+            height: 45px;
+            margin: 35px 0
+        }
+        
+        .button input:hover {
+            /* transform: scale(0.99); */
+            background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+        }
+        
+        #users {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        #users td,
+        #users th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        
+        #users tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        #users tr:hover {
+            background-color: #ddd;
+        }
+        
+        #users th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            background-color: #9371e6;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <%= title %>
+        </div>
+        <div class="content">
+            <form>
+                <div class="user-details">
+                    <table id="users">
+                        <tr>
+                            <th>Full Name</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th> Address</th>
+                            <th>State</th>
+                            <th>City</th>
+                        </tr>
+                        <% usersList.forEach(function(item,index){ %>
+                            <tr>
+                                <td>
+                                    <%= item.fullname %>
+                                </td>
+                                <td>
+                                    <%= item.username %>
+                                </td>
+                                <td>
+                                    <%= item.email %>
+                                </td>
+                                <td>
+                                    <%= item.address %>
+                                </td>
+                                <td>
+                                    <%= item.state %>
+                                </td>
+                                <td>
+                                    <%= item.city %>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
